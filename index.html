@@ -24,6 +24,7 @@
     <div class="layout">
       <section class="editor" aria-label="Editor">
         <form id="wrapForm" autocomplete="off">
+          <a class="jump-preview" href="#previewSection">Jump to Preview</a>
           <fieldset>
             <legend>Core</legend>
             <label>
@@ -94,19 +95,23 @@
             </label>
             <label>
               Name
-              <input type="text" id="profileNameInput" placeholder="Alex Morgan">
+              <input type="text" id="profileNameInput" placeholder="Jagan Jijo">
             </label>
             <label>
               Role
-              <input type="text" id="profileRoleInput" placeholder="Senior Software Engineer">
+              <input type="text" id="profileRoleInput" placeholder="Software Engineer">
             </label>
             <label>
               Company
-              <input type="text" id="profileCompanyInput" placeholder="Cloudline Systems">
+              <input type="text" id="profileCompanyInput" placeholder="AISOC">
             </label>
             <label>
-              Personality tag
-              <input type="text" id="profilePersonalityInput" placeholder="Latency whisperer">
+              Badge
+              <select id="profileBadgeSelect"></select>
+            </label>
+            <label id="customBadgeRow" hidden>
+              Custom badge text
+              <input type="text" id="profileBadgeCustomInput" placeholder="Your custom badge">
             </label>
           </fieldset>
 
@@ -131,7 +136,7 @@
         </form>
       </section>
 
-      <section class="preview" aria-label="Preview">
+      <section class="preview" id="previewSection" aria-label="Preview">
         <div class="poster-shell">
           <div id="poster" class="poster" role="img" aria-label="Software Engineer Wrap poster">
             <div class="poster-noise" aria-hidden="true"></div>
@@ -162,17 +167,21 @@
             <div class="poster-footer">
               <div class="profile-photo" id="posterPhoto"></div>
               <div class="profile-copy">
-                <p class="profile-name" id="posterName">Alex Morgan</p>
-                <p class="profile-role" id="posterRole">Senior Software Engineer</p>
-                <p class="profile-company" id="posterCompany">Cloudline Systems</p>
+                <p class="profile-name" id="posterName">Jagan Jijo</p>
+                <p class="profile-role" id="posterRole">Software Engineer</p>
+                <p class="profile-company" id="posterCompany">AISOC</p>
               </div>
-              <div class="profile-tag" id="posterPersonality">Latency whisperer</div>
+              <div class="profile-tag" id="posterBadge">Latency whisperer</div>
             </div>
+            <p class="poster-linkline">jagan-jijo.github.io/softdev-wrapped</p>
           </div>
           <div class="safe-overlay" id="safeOverlay" data-no-export hidden>
             <div class="safe-box"></div>
           </div>
         </div>
+        <a class="preview-link" href="https://jagan-jijo.github.io/softdev-wrapped/" target="_blank" rel="noopener">
+          jagan-jijo.github.io/softdev-wrapped
+        </a>
       </section>
     </div>
   </div>

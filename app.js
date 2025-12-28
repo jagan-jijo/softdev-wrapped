@@ -11,6 +11,19 @@ const themes = [
   { id: "paper", name: "Paper Forest (light)" }
 ];
 
+// Badge selector options used in the profile section.
+const badgeOptions = [
+  "Latency whisperer",
+  "Bug slayer",
+  "CI/CD enjoyer",
+  "API architect",
+  "Refactor merchant",
+  "Incident responder",
+  "Ship it mode",
+  "Query optimizer",
+  "Custom"
+];
+
 const metricIconCatalog = {
   bolt: "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8'><path d='M13 2 4 14h6l-1 8 9-12h-6l1-8z'/></svg>",
   terminal: "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.8'><path d='M4 5h16v14H4z'/><path d='m7 9 3 3-3 3M12 15h5'/></svg>",
@@ -97,10 +110,11 @@ const defaultData = {
   apps: ["vscode", "github", "docker", "slack", "notion", "postman", "chrome", "terminal"],
   languages: ["js", "ts", "py", "go", "sql", "css"],
   profile: {
-    name: "Alex Morgan",
-    role: "Senior Software Engineer",
-    company: "Cloudline Systems",
-    personality: "Latency whisperer",
+    name: "Jagan Jijo",
+    role: "Software Engineer",
+    company: "AISOC",
+    badge: "Latency whisperer",
+    badgeCustom: "",
     photoDataUrl: ""
   },
   themeId: "noir",
@@ -127,7 +141,9 @@ const elements = {
   profileNameInput: document.getElementById("profileNameInput"),
   profileRoleInput: document.getElementById("profileRoleInput"),
   profileCompanyInput: document.getElementById("profileCompanyInput"),
-  profilePersonalityInput: document.getElementById("profilePersonalityInput"),
+  profileBadgeSelect: document.getElementById("profileBadgeSelect"),
+  profileBadgeCustomInput: document.getElementById("profileBadgeCustomInput"),
+  customBadgeRow: document.getElementById("customBadgeRow"),
   customAppInput: document.getElementById("customAppInput"),
   customLanguageInput: document.getElementById("customLanguageInput"),
   exportJsonBtn: document.getElementById("exportJsonBtn"),
@@ -152,7 +168,7 @@ const elements = {
   posterName: document.getElementById("posterName"),
   posterRole: document.getElementById("posterRole"),
   posterCompany: document.getElementById("posterCompany"),
-  posterPersonality: document.getElementById("posterPersonality"),
+  posterBadge: document.getElementById("posterBadge"),
   safeOverlay: document.getElementById("safeOverlay")
 };
 
@@ -185,6 +201,12 @@ function renderThemeOptions() {
     .join("");
 }
 
+function renderBadgeOptions() {
+  elements.profileBadgeSelect.innerHTML = badgeOptions
+    .map((badge) => `<option value='${badge}'>${badge}</option>`)
+    .join("");
+}
+
 function bindForm() {
   elements.yearInput.addEventListener("input", () => updateData("year", Number(elements.yearInput.value)));
   elements.titleInput.addEventListener("input", () => updateData("title", elements.titleInput.value));
@@ -198,7 +220,8 @@ function bindForm() {
   elements.profileNameInput.addEventListener("input", () => updateProfile("name", elements.profileNameInput.value));
   elements.profileRoleInput.addEventListener("input", () => updateProfile("role", elements.profileRoleInput.value));
   elements.profileCompanyInput.addEventListener("input", () => updateProfile("company", elements.profileCompanyInput.value));
-  elements.profilePersonalityInput.addEventListener("input", () => updateProfile("personality", elements.profilePersonalityInput.value));
+  elements.profileBadgeSelect.addEventListener("change", () => updateBadgeSelection());
+  elements.profileBadgeCustomInput.addEventListener("input", () => updateProfile("badgeCustom", elements.profileBadgeCustomInput.value));
 
   elements.profilePhotoInput.addEventListener("change", async (event) => {
     const file = event.target.files[0];
@@ -225,16 +248,25 @@ function bindForm() {
 }
 
 function renderAll() {
+  renderBadgeOptions();
   elements.yearInput.value = state.data.year;
   elements.titleInput.value = state.data.title;
   elements.subtitleInput.value = state.data.subtitle;
   elements.taglineInput.value = state.data.tagline;
   elements.themeSelect.value = state.data.themeId;
 
+  const badgeIsKnown = badgeOptions.includes(state.data.profile.badge);
+  if (!badgeIsKnown && state.data.profile.badge) {
+    state.data.profile.badgeCustom = state.data.profile.badge;
+    state.data.profile.badge = "Custom";
+  }
+
   elements.profileNameInput.value = state.data.profile.name;
   elements.profileRoleInput.value = state.data.profile.role;
   elements.profileCompanyInput.value = state.data.profile.company;
-  elements.profilePersonalityInput.value = state.data.profile.personality;
+  elements.profileBadgeSelect.value = state.data.profile.badge;
+  elements.profileBadgeCustomInput.value = state.data.profile.badgeCustom;
+  toggleCustomBadge(state.data.profile.badge === "Custom");
 
   renderMetricsForm();
   renderCatalogGrid("apps");
@@ -357,7 +389,7 @@ function renderPoster() {
   elements.posterName.textContent = state.data.profile.name || "";
   elements.posterRole.textContent = state.data.profile.role || "";
   elements.posterCompany.textContent = state.data.profile.company || "";
-  elements.posterPersonality.textContent = state.data.profile.personality || "";
+  elements.posterBadge.textContent = getBadgeText();
 
   elements.posterPhoto.innerHTML = state.data.profile.photoDataUrl
     ? `<img src='${state.data.profile.photoDataUrl}' alt='Profile photo' />`
@@ -380,6 +412,28 @@ function renderPoster() {
 
   elements.posterApps.innerHTML = renderIconChips(state.data.apps, "apps");
   elements.posterLanguages.innerHTML = renderIconChips(state.data.languages, "languages");
+}
+
+function updateBadgeSelection() {
+  const selected = elements.profileBadgeSelect.value;
+  updateProfile("badge", selected);
+  toggleCustomBadge(selected === "Custom");
+}
+
+function toggleCustomBadge(show) {
+  elements.customBadgeRow.hidden = !show;
+  if (!show) {
+    elements.profileBadgeCustomInput.value = "";
+    updateProfile("badgeCustom", "");
+  }
+}
+
+function getBadgeText() {
+  // The poster always renders a single badge pill.
+  if (state.data.profile.badge === "Custom") {
+    return state.data.profile.badgeCustom || "Custom badge";
+  }
+  return state.data.profile.badge || "";
 }
 
 function renderIconChips(ids, type) {
