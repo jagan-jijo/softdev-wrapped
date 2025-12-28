@@ -225,9 +225,9 @@ input:focus, select:focus, button:focus {
 
 .preview {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 6px;
+  padding-top: 12px;
 }
 
 .poster-shell {
@@ -243,10 +243,10 @@ input:focus, select:focus, button:focus {
   height: 100%;
   border-radius: 28px;
   overflow: hidden;
-  padding: 32px 30px 28px;
+  padding: 32px 30px 30px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
   background: var(--poster-bg);
   color: var(--poster-text);
   box-shadow: 0 24px 60px rgba(10, 12, 25, 0.4);
@@ -268,8 +268,8 @@ input:focus, select:focus, button:focus {
 
 .poster-glow {
   position: absolute;
-  inset: -40% 0 auto;
-  height: 60%;
+  inset: -20% 0 auto;
+  height: 50%;
   background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 60%);
   filter: blur(12px);
   opacity: 0.8;
@@ -324,13 +324,14 @@ input:focus, select:focus, button:focus {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  grid-auto-rows: 1fr;
 }
 
 .metric-card {
   background: var(--metric-bg);
   border-radius: 16px;
   padding: 12px;
-  min-height: 92px;
+  min-height: 96px;
   display: grid;
   grid-template-columns: 32px 1fr;
   gap: 10px;
@@ -368,7 +369,7 @@ input:focus, select:focus, button:focus {
 .icon-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .icon-chip {
@@ -439,38 +440,11 @@ input:focus, select:focus, button:focus {
 .poster-linkline {
   margin: 6px 0 0;
   font-size: 10px;
-  text-align: center;
+  text-align: right;
   color: var(--poster-muted);
   letter-spacing: 0.08em;
-}
-
-.safe-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  display: grid;
-  place-items: center;
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-.safe-box {
-  width: 86%;
-  height: 86%;
-  border: 2px dashed rgba(255, 255, 255, 0.45);
-  border-radius: 20px;
-}
-
-.preview-link {
-  margin-top: 14px;
-  display: inline-block;
-  color: #9fb2ff;
   text-decoration: none;
-  font-size: 12px;
-}
-
-.preview-link:hover {
-  text-decoration: underline;
+  opacity: 0.75;
 }
 
 .jump-preview {

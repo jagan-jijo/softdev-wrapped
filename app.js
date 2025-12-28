@@ -131,7 +131,6 @@ const elements = {
   subtitleInput: document.getElementById("subtitleInput"),
   taglineInput: document.getElementById("taglineInput"),
   themeSelect: document.getElementById("themeSelect"),
-  safeAreaToggle: document.getElementById("safeAreaToggle"),
   metricsList: document.getElementById("metricsList"),
   appsGrid: document.getElementById("appsGrid"),
   languagesGrid: document.getElementById("languagesGrid"),
@@ -168,8 +167,7 @@ const elements = {
   posterName: document.getElementById("posterName"),
   posterRole: document.getElementById("posterRole"),
   posterCompany: document.getElementById("posterCompany"),
-  posterBadge: document.getElementById("posterBadge"),
-  safeOverlay: document.getElementById("safeOverlay")
+  posterBadge: document.getElementById("posterBadge")
 };
 
 init();
@@ -213,9 +211,6 @@ function bindForm() {
   elements.subtitleInput.addEventListener("input", () => updateData("subtitle", elements.subtitleInput.value));
   elements.taglineInput.addEventListener("input", () => updateData("tagline", elements.taglineInput.value));
   elements.themeSelect.addEventListener("change", () => updateData("themeId", elements.themeSelect.value));
-  elements.safeAreaToggle.addEventListener("change", () => {
-    elements.safeOverlay.hidden = !elements.safeAreaToggle.checked;
-  });
 
   elements.profileNameInput.addEventListener("input", () => updateProfile("name", elements.profileNameInput.value));
   elements.profileRoleInput.addEventListener("input", () => updateProfile("role", elements.profileRoleInput.value));
