@@ -17,7 +17,7 @@ body {
 .app {
   min-height: 100vh;
   padding: 24px clamp(16px, 3vw, 32px) 48px;
-  max-width: 1320px;
+  max-width: 1480px;
   margin: 0 auto;
 }
 
@@ -55,7 +55,7 @@ body {
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(420px, 520px) minmax(0, 1fr);
+  grid-template-columns: minmax(440px, 540px) minmax(0, 1fr);
   gap: 32px;
   align-items: start;
 }
@@ -228,12 +228,12 @@ input:focus, select:focus, button:focus {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 16px;
 }
 
 .poster-shell {
   position: relative;
-  width: min(100%, 560px);
+  width: min(100%, 640px);
   aspect-ratio: 9 / 16;
   perspective: 1200px;
   margin: 0 auto;
@@ -245,10 +245,10 @@ input:focus, select:focus, button:focus {
   height: 100%;
   border-radius: 28px;
   overflow: hidden;
-  padding: 32px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
   background: var(--poster-bg);
   color: var(--poster-text);
   box-shadow: 0 24px 60px rgba(10, 12, 25, 0.4);
@@ -325,18 +325,18 @@ input:focus, select:focus, button:focus {
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 12px;
   grid-auto-rows: 1fr;
 }
 
 .metric-card {
   background: var(--metric-bg);
   border-radius: 16px;
-  padding: 14px;
-  min-height: 104px;
+  padding: 12px;
+  min-height: 92px;
   display: grid;
-  grid-template-columns: 36px 1fr;
-  gap: 10px;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
   align-items: center;
   border: 1px solid var(--metric-border);
   box-shadow: var(--metric-shadow);
@@ -349,8 +349,8 @@ input:focus, select:focus, button:focus {
 }
 
 .metric-card svg {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
 }
 
 .metric-label {
@@ -366,7 +366,7 @@ input:focus, select:focus, button:focus {
 }
 
 .poster-section h3 {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -375,7 +375,7 @@ input:focus, select:focus, button:focus {
 
 .poster-section {
   display: grid;
-  gap: 8px;
+  gap: 6px;
 }
 
 .icon-row {
@@ -408,7 +408,7 @@ input:focus, select:focus, button:focus {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 12px;
-  padding-top: 8px;
+  padding-top: 6px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
@@ -451,7 +451,7 @@ input:focus, select:focus, button:focus {
 }
 
 .poster-linkline {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
   font-size: 10px;
   text-align: right;
   color: var(--poster-muted);
@@ -554,6 +554,12 @@ body[data-theme="paper"] {
 
   .jump-preview {
     display: inline-block;
+  }
+}
+
+@media (min-width: 1280px) {
+  .poster-shell {
+    width: min(100%, 680px);
   }
 }
 
