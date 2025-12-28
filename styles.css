@@ -57,6 +57,7 @@ body {
   display: grid;
   grid-template-columns: minmax(420px, 520px) minmax(0, 1fr);
   gap: 32px;
+  align-items: start;
 }
 
 .editor {
@@ -225,9 +226,9 @@ input:focus, select:focus, button:focus {
 
 .preview {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding-top: 12px;
+  padding-top: 20px;
 }
 
 .poster-shell {
@@ -235,6 +236,7 @@ input:focus, select:focus, button:focus {
   width: min(100%, 560px);
   aspect-ratio: 9 / 16;
   perspective: 1200px;
+  margin: 0 auto;
 }
 
 .poster {
@@ -243,10 +245,10 @@ input:focus, select:focus, button:focus {
   height: 100%;
   border-radius: 28px;
   overflow: hidden;
-  padding: 32px 30px 30px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
   background: var(--poster-bg);
   color: var(--poster-text);
   box-shadow: 0 24px 60px rgba(10, 12, 25, 0.4);
@@ -255,7 +257,7 @@ input:focus, select:focus, button:focus {
 }
 
 .poster:hover {
-  transform: rotateY(-6deg) rotateX(4deg);
+  transform: rotateY(-3deg) rotateX(2deg);
 }
 
 .poster-noise {
@@ -268,8 +270,8 @@ input:focus, select:focus, button:focus {
 
 .poster-glow {
   position: absolute;
-  inset: -20% 0 auto;
-  height: 50%;
+  inset: 0 0 auto;
+  height: 45%;
   background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 60%);
   filter: blur(12px);
   opacity: 0.8;
@@ -323,17 +325,17 @@ input:focus, select:focus, button:focus {
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
   grid-auto-rows: 1fr;
 }
 
 .metric-card {
   background: var(--metric-bg);
   border-radius: 16px;
-  padding: 12px;
-  min-height: 96px;
+  padding: 14px;
+  min-height: 104px;
   display: grid;
-  grid-template-columns: 32px 1fr;
+  grid-template-columns: 36px 1fr;
   gap: 10px;
   align-items: center;
   border: 1px solid var(--metric-border);
@@ -341,9 +343,14 @@ input:focus, select:focus, button:focus {
   transform: translateZ(10px);
 }
 
+.metric-icon {
+  display: grid;
+  place-items: center;
+}
+
 .metric-card svg {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
 }
 
 .metric-label {
@@ -366,10 +373,16 @@ input:focus, select:focus, button:focus {
   color: var(--poster-muted);
 }
 
+.poster-section {
+  display: grid;
+  gap: 8px;
+}
+
 .icon-row {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
 }
 
 .icon-chip {
@@ -445,6 +458,7 @@ input:focus, select:focus, button:focus {
   letter-spacing: 0.08em;
   text-decoration: none;
   opacity: 0.75;
+  align-self: flex-end;
 }
 
 .jump-preview {
