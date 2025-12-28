@@ -245,10 +245,10 @@ input:focus, select:focus, button:focus {
   height: 100%;
   border-radius: 28px;
   overflow: hidden;
-  padding: 30px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
   background: var(--poster-bg);
   color: var(--poster-text);
   box-shadow: 0 24px 60px rgba(10, 12, 25, 0.4);
@@ -298,7 +298,7 @@ input:focus, select:focus, button:focus {
 
 .poster-year {
   margin: 4px 0;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-shadow: 0 0 18px rgba(94, 226, 255, 0.25);
@@ -308,13 +308,13 @@ input:focus, select:focus, button:focus {
 .poster-subtitle,
 .poster-tagline {
   margin: 2px 0;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--poster-muted);
 }
 
 .poster-orb {
-  width: 90px;
-  height: 90px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, var(--poster-accent), transparent 70%);
   box-shadow: 0 0 40px rgba(90, 200, 255, 0.4);
@@ -325,18 +325,18 @@ input:focus, select:focus, button:focus {
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 8px;
   grid-auto-rows: 1fr;
 }
 
 .metric-card {
   background: var(--metric-bg);
   border-radius: 16px;
-  padding: 12px;
-  min-height: 92px;
+  padding: 8px;
+  min-height: 78px;
   display: grid;
-  grid-template-columns: 32px 1fr;
-  gap: 8px;
+  grid-template-columns: 26px 1fr;
+  gap: 6px;
   align-items: center;
   border: 1px solid var(--metric-border);
   box-shadow: var(--metric-shadow);
@@ -349,25 +349,25 @@ input:focus, select:focus, button:focus {
 }
 
 .metric-card svg {
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
 }
 
 .metric-label {
-  font-size: 12px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--poster-muted);
 }
 
 .metric-value {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .poster-section h3 {
   margin: 0;
-  font-size: 13px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--poster-muted);
@@ -375,7 +375,7 @@ input:focus, select:focus, button:focus {
 
 .poster-section {
   display: grid;
-  gap: 6px;
+  gap: 4px;
 }
 
 .icon-row {
@@ -386,8 +386,8 @@ input:focus, select:focus, button:focus {
 }
 
 .icon-chip {
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
   border-radius: 16px;
   background: var(--chip-bg);
   display: grid;
@@ -398,8 +398,8 @@ input:focus, select:focus, button:focus {
 
 .icon-chip svg,
 .icon-chip img {
-  width: 28px;
-  height: 28px;
+  width: 22px;
+  height: 22px;
 }
 
 .poster-footer {
@@ -413,8 +413,8 @@ input:focus, select:focus, button:focus {
 }
 
 .profile-photo {
-  width: 56px;
-  height: 56px;
+  width: 46px;
+  height: 46px;
   border-radius: 18px;
   background: var(--chip-bg);
   overflow: hidden;
@@ -443,16 +443,16 @@ input:focus, select:focus, button:focus {
 }
 
 .profile-tag {
-  font-size: 11px;
-  padding: 6px 10px;
+  font-size: 9px;
+  padding: 4px 8px;
   border-radius: 999px;
   background: var(--tag-bg);
   border: 1px solid var(--chip-border);
 }
 
 .poster-linkline {
-  margin: 4px 0 0;
-  font-size: 10px;
+  margin: 2px 0 0;
+  font-size: 8px;
   text-align: right;
   color: var(--poster-muted);
   letter-spacing: 0.08em;
