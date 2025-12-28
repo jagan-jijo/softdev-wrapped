@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Software Engineer Wrap</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app" id="appRoot">
+    <header class="app-header">
+      <div>
+        <p class="kicker">Software Engineer Wrap</p>
+        <h1>Build your 2025 story card</h1>
+        <p class="sub">All data stays in your browser. Export a high-quality PNG.</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn" id="loadPresetBackend" type="button">Load Backend Year</button>
+        <button class="btn" id="loadPresetFrontend" type="button">Load Frontend Year</button>
+        <button class="btn" id="loadPresetDevops" type="button">Load DevOps Year</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="editor" aria-label="Editor">
+        <form id="wrapForm" autocomplete="off">
+          <fieldset>
+            <legend>Core</legend>
+            <label>
+              Year
+              <input type="number" id="yearInput" min="2000" max="2100">
+            </label>
+            <label>
+              Title
+              <input type="text" id="titleInput" placeholder="SOFTWARE ENGINEER WRAP">
+            </label>
+            <label>
+              Subtitle
+              <input type="text" id="subtitleInput" placeholder="Your code year in review">
+            </label>
+            <label>
+              Tagline
+              <input type="text" id="taglineInput" placeholder="Built in flow state">
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Theme</legend>
+            <label>
+              Select theme
+              <select id="themeSelect"></select>
+            </label>
+            <label class="toggle">
+              <input type="checkbox" id="safeAreaToggle">
+              Show safe margins
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Metrics</legend>
+            <p class="hint">Edit labels, values, and icons. These are your headline stats.</p>
+            <div id="metricsList" class="metrics-list"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Most used apps (pick up to 8)</legend>
+            <div class="select-row">
+              <span id="appsCount" class="chip">0/8 selected</span>
+              <label class="inline">
+                Add custom icon
+                <input type="file" id="customAppInput" accept="image/*">
+              </label>
+            </div>
+            <div id="appsGrid" class="icon-grid"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Most used languages (pick up to 6)</legend>
+            <div class="select-row">
+              <span id="languagesCount" class="chip">0/6 selected</span>
+              <label class="inline">
+                Add custom icon
+                <input type="file" id="customLanguageInput" accept="image/*">
+              </label>
+            </div>
+            <div id="languagesGrid" class="icon-grid"></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Profile</legend>
+            <label>
+              Profile photo (optional)
+              <input type="file" id="profilePhotoInput" accept="image/*">
+            </label>
+            <label>
+              Name
+              <input type="text" id="profileNameInput" placeholder="Alex Morgan">
+            </label>
+            <label>
+              Role
+              <input type="text" id="profileRoleInput" placeholder="Senior Software Engineer">
+            </label>
+            <label>
+              Company
+              <input type="text" id="profileCompanyInput" placeholder="Cloudline Systems">
+            </label>
+            <label>
+              Personality tag
+              <input type="text" id="profilePersonalityInput" placeholder="Latency whisperer">
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Data</legend>
+            <div class="button-row">
+              <button class="btn" id="exportJsonBtn" type="button">Export JSON</button>
+              <label class="btn ghost" for="importJsonInput">Import JSON</label>
+              <input type="file" id="importJsonInput" accept="application/json" hidden>
+            </div>
+            <div class="button-row">
+              <button class="btn ghost" id="resetBtn" type="button">Reset</button>
+              <button class="btn primary" id="downloadPngBtn" type="button">Download PNG</button>
+            </div>
+            <div class="button-row">
+              <button class="btn" id="shareLinkedInBtn" type="button">Share to LinkedIn</button>
+              <button class="btn" id="shareInstagramBtn" type="button">Share to Instagram</button>
+              <button class="btn" id="shareWhatsappBtn" type="button">Share to WhatsApp</button>
+            </div>
+            <p class="hint">Share buttons open the platform share flow. Attach the downloaded image.</p>
+          </fieldset>
+        </form>
+      </section>
+
+      <section class="preview" aria-label="Preview">
+        <div class="poster-shell">
+          <div id="poster" class="poster" role="img" aria-label="Software Engineer Wrap poster">
+            <div class="poster-noise" aria-hidden="true"></div>
+            <div class="poster-glow" aria-hidden="true"></div>
+
+            <div class="poster-header">
+              <div class="poster-title">
+                <p class="poster-kicker" id="posterKicker">SOFTWARE ENGINEER WRAP</p>
+                <h2 class="poster-year" id="posterYear">2025</h2>
+                <p class="poster-subtitle" id="posterSubtitle">Your code year in review</p>
+                <p class="poster-tagline" id="posterTagline">Built in flow state</p>
+              </div>
+              <div class="poster-orb" aria-hidden="true"></div>
+            </div>
+
+            <div class="metrics-grid" id="posterMetrics"></div>
+
+            <div class="poster-section">
+              <h3>Top apps</h3>
+              <div class="icon-row" id="posterApps"></div>
+            </div>
+
+            <div class="poster-section">
+              <h3>Top languages</h3>
+              <div class="icon-row" id="posterLanguages"></div>
+            </div>
+
+            <div class="poster-footer">
+              <div class="profile-photo" id="posterPhoto"></div>
+              <div class="profile-copy">
+                <p class="profile-name" id="posterName">Alex Morgan</p>
+                <p class="profile-role" id="posterRole">Senior Software Engineer</p>
+                <p class="profile-company" id="posterCompany">Cloudline Systems</p>
+              </div>
+              <div class="profile-tag" id="posterPersonality">Latency whisperer</div>
+            </div>
+          </div>
+          <div class="safe-overlay" id="safeOverlay" data-no-export hidden>
+            <div class="safe-box"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
