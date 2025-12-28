@@ -182,11 +182,53 @@ function loadData() {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (!saved) return structuredClone(defaultData);
   try {
-    return { ...defaultData, ...JSON.parse(saved) };
+    return normalizeData(JSON.parse(saved));
   } catch (error) {
     console.warn("Failed to parse saved data", error);
     return structuredClone(defaultData);
   }
+}
+
+function normalizeData(raw) {
+  const merged = structuredClone(defaultData);
+  if (!raw || typeof raw !== "object") return merged;
+
+  merged.year = Number.isFinite(raw.year) && raw.year > 0 ? raw.year : merged.year;
+  merged.title = sanitizeText(raw.title, merged.title);
+  merged.subtitle = sanitizeText(raw.subtitle, merged.subtitle);
+  merged.tagline = sanitizeText(raw.tagline, merged.tagline);
+  merged.themeId = raw.themeId ?? merged.themeId;
+  merged.customIcons = raw.customIcons ?? merged.customIcons;
+
+  merged.metrics = Array.isArray(raw.metrics) && raw.metrics.length > 0
+    ? raw.metrics
+    : merged.metrics;
+  merged.apps = Array.isArray(raw.apps) && raw.apps.length > 0
+    ? raw.apps
+    : merged.apps;
+  merged.languages = Array.isArray(raw.languages) && raw.languages.length > 0
+    ? raw.languages
+    : merged.languages;
+
+  if (raw.profile && typeof raw.profile === "object") {
+    merged.profile = {
+      ...merged.profile,
+      ...raw.profile,
+      name: sanitizeText(raw.profile.name, merged.profile.name),
+      role: sanitizeText(raw.profile.role, merged.profile.role),
+      company: sanitizeText(raw.profile.company, merged.profile.company),
+      badge: sanitizeText(raw.profile.badge, merged.profile.badge),
+      badgeCustom: sanitizeText(raw.profile.badgeCustom, merged.profile.badgeCustom)
+    };
+  }
+
+  return merged;
+}
+
+function sanitizeText(value, fallback) {
+  if (typeof value !== "string") return fallback;
+  const trimmed = value.trim();
+  return trimmed.length === 0 ? fallback : trimmed;
 }
 
 function saveData() {
